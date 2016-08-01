@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="snt_background">
+
+<div class="container-fluid">
+  <h1><div id="center"><font size="12"><u>Vox Populi<br> IIT Kanpur</u></font> </div></h1>
+ <div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-3">
+        <br><br>
+        <br>
+        <br>
+        <div id="center"><img class="img-circle"  src ="{% static 'images/vox.jpg' %}" height="200px" width="200px"/></div>
+        <br><br>
+        <br>
+        <br>
+
+            <div class='col-sm-12'>
+            <div class='input-group '>
+            <input class='form-control' type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
+            <span class='input-group-btn'>
+
+            <button class='btn btn-default' type='submit'>Search <i class="fa fa-search"></i></button>
+            </span>
+            </div>
+            </div>
+        <br><br>
+        <br>
+        <br>
+        <div id="center"><p style="color:white; font-family:Comic Sans MS; font-size:125%;">Science and Technology Council is a part of Student's Gymkhana and provides opportunity and a platform for students to pursue their hobbies in field of science and technology.The Council currently comprises of 8 clubs and a Rubik's cube hobby group.
+        <br>
+        <h4 style="color:yellow"><div id="center">What is the council all about?</div></h4>
+        <p style="color:white;  font-family:Comic Sans MS; font-size:125%;">An opportunity for you to explore for yourself the amazing world of technology, to innovate, to learn, to create, to try out new things and at the same time have loads and loads of fun. A place for you to realize your dream and develop the next killer technology! So what’s stopping you??...come and join us in our activities! With the thought, “Imagination is more important than knowledge”, We, the Science and Technology Council compel each and everyone to think beyond the conventional boundaries, provide support, opportunity to help one unleash his imagination and an ideal platform to showcase one’s talent. We make things fly, we carve out mighty business plans, we build electronic gadgets, our own communication devices, we dare to stare deep into the sky not only to admire the cosmic wonder, but a lot more; we write our own codes, and yes we do make our own robots! Well, if by remote chance none of this is your cup of tea, then why not indulge in a game of fox hunt or simply enjoy a joyride on one of the gliders. There is surely something for everyone!
+        </p>
+        <br>
+        </div>
+
+
+    </div>
+    <div class="col-sm-1">
+    </div>
+
+
+
+    <div class="col-sm-8">
+
+
+                    <h1><div id="center">News Feed</div></h1>
+                    <hr>
+                <form method='GET' action='' class='row'>
+                </form>
+{% for obj in object_list %}
+<div class="row">
+  <div class="col-sm-12">
+    <div class="thumbnail">
+        {% if obj.image %}
+         <img src='{{ obj.image.url }}' class='img-responsive' />
+        {% endif %}
+      <div class="caption post-detail-item">
+        {% if obj.draft %}<h3>Staff only: Draft</h3>{% endif %} {% if obj.publish > today %}<h3>Staff Only: Future Post</h3>{% endif %}
+        <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a> <small>{{ obj.publish }}</small></h3>
+        {% if obj.user.get_full_name %}<p>Author: {{ obj.user.get_full_name }}</p>{% endif %}
+        {{ obj.get_markdown|truncatechars_html:120 }}
+        <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
+      </div>
+    </div>
+  </div>
+<hr/>
+</div>
+{% endfor %}
+
+
+                <ul class="pagination">
+                    <!-- <span class="step-links"> -->
+                        {% if object_list.has_previous %}
+                            <li><a href="?{{ page_request_var }}={{ object_list_snt.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a></li>
+                        {% endif %}
+
+                        <!-- <span class="current"> -->
+                            <li><a>Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.</a></li>
+                        <!-- </span> -->
+
+                        {% if object_list.has_next %}
+                            <li><a href="?{{ page_request_var }}={{ object_list_snt.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a></li>
+                        {% endif %}
+                    <!-- </span> -->
+                </ul>
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+</div>
+
+{% endblock content %}

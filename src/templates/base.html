@@ -1,0 +1,213 @@
+{% load staticfiles %}
+<!--DOCTYPE html -->
+<html>
+<head>
+    <title>{% block head_title %}Advancing the Blog{% endblock head_title %}</title>
+    <!-- Latest compiled and minified CSS -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+     <link rel='stylesheet' href='/static/css/base.css' />
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+
+    
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
+    
+   
+
+    <!-- Optional theme -->
+    
+
+    <!-- <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' > -->
+
+    
+    <link rel='stylesheet' href='{% static "css/font-awesome.min.css" %}' />
+    <style>
+        {% block style %}{% endblock style %}
+    </style>
+
+    
+    {% block head_extra %} {% endblock head_extra %}
+</head>
+<body>
+    <div id="fb-root"></div>
+    {% include "messages_display.html" %}
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+            <header id="header">
+                <h1><a href="/">GYMKHANA <font color=red>L!VE</font></a></h1>
+                <nav class="links">
+                    <ul>
+                        <li><a href="/cultural">Cultural Council</a></li>
+                        <li><a href="/game">Games & Sports</a></li>
+                        <li><a href="/fmc">FMC</a></li>
+                        <li><a href="/senate">Senate</a></li>
+                        <li><a href="/snt">SNT Council</a></li>
+                    </ul>
+                               
+                </nav>
+
+                <nav class="main">
+                    <ul>
+                        <li class="search">
+                            <a class="fa-search" href="#search">Search</a>
+                            
+                            <form method='GET' action='' id="search">
+                                                                    <div class='input-group '>
+                                        <input class='form-control' type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
+                                        <span class='input-group-btn'>
+                                            
+                                            <button class='btn btn-default' type='submit'>Search <i class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                
+                            </form>
+                        </li>
+                       
+                        <li class="menu">
+                            {% if not request.user.is_authenticated %}
+                            <a class="fa-sign-in" href="{% url "login" %}">Menu</a>
+                            {% else %}
+                            <a class="fa-power-off" href="{% url "logout" %}">Menu</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+        <!-- Menu -->
+            <section id="menu">
+
+                <!-- Search -->
+                    <section>
+                        <form class="search" method="get" action="#">
+                            <input type="text" name="query" placeholder="Search" />
+                        </form>
+                    </section>
+
+                <!-- Links -->
+                    <section>
+                        <ul class="links">
+                            <li>
+                                <a href="#">
+                                    <h3>Lorem ipsum</h3>
+                                    <p>Feugiat tempus veroeros dolor</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <h3>Dolor sit amet</h3>
+                                    <p>Sed vitae justo condimentum</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <h3>Feugiat veroeros</h3>
+                                    <p>Phasellus sed ultricies mi congue</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <h3>Etiam sed consequat</h3>
+                                    <p>Porta lectus amet ultricies</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+
+                <!-- Actions -->
+                    <section>
+                        <ul class="actions vertical">
+                            <li><a href="#" class="button big fit">Log In</a></li>
+                        </ul>
+                    </section>
+
+            </section>
+        
+        <!-- Posts -->
+            {% block content %}{% endblock content %}
+                
+        <!-- Sidebar -->
+                        
+    
+    </div>
+
+<!-- Scripts -->
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/skel.min.js" %}"></script>
+    <script src="{% static "js/util.js" %}"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="{% static "js/main.js" %}"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script   src="http://code.jquery.com/jquery-1.12.2.min.js"   integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js'></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(".content-markdown").each(function(){
+                var content = $(this).text()
+                var markedContent = marked(content)
+                $(this).html(markedContent)
+        })
+        $(".post-detail-item img").each(function(){
+                $(this).addClass("image featured small");
+        })
+
+        
+
+        var contentInput = $("#id_content");
+
+        function setContent(value){
+            var markedContent = marked(value)
+            $("#preview-content").html(markedContent)
+            $("#preview-content img").each(function(){
+                $(this).addClass("img-responsive")
+            })
+        }
+        setContent(contentInput.val())
+
+        contentInput.keyup(function(){
+            var newContent = $(this).val()
+            setContent(newContent)
+        })
+
+        var titleInput = $("#id_title");
+        
+
+
+        function setTitle(value) {
+            $("#preview-title").text(value)
+        }
+        setTitle(titleInput.val())
+
+        titleInput.keyup(function(){
+            var newContent = $(this).val()
+            setTitle(newContent)
+        })
+
+        $(".comment-reply-btn").click(function(event){
+            event.preventDefault();
+            $(this).parent().next(".comment-reply").fadeToggle();
+        })
+
+
+        // preview-title
+        // preview-content
+
+    })
+
+    </script>
+</body>
+</html>
+
+
+
+
