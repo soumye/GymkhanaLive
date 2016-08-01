@@ -69,11 +69,9 @@
                         </li>
                        
                         <li class="menu">
-                            {% if not request.user.is_authenticated %}
-                            <a class="fa-sign-in" href="{% url "login" %}">Menu</a>
-                            {% else %}
-                            <a class="fa-power-off" href="{% url "logout" %}">Menu</a>
-                            {% endif %}
+                            
+                            <a class="fa-bars" href="#menu">Menu</a>
+                            
                         </li>
                     </ul>
                 </nav>
@@ -84,8 +82,15 @@
 
                 <!-- Search -->
                     <section>
-                        <form class="search" method="get" action="#">
-                            <input type="text" name="query" placeholder="Search" />
+                        <form method='GET' action='' id="search">
+                                <div class='input-group '>
+                                    <input class='form-control' type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
+                                    <span class='input-group-btn'>
+                                        
+                                        <button class='btn btn-default' type='submit'>Search <i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            
                         </form>
                     </section>
 
@@ -93,26 +98,32 @@
                     <section>
                         <ul class="links">
                             <li>
-                                <a href="#">
-                                    <h3>Lorem ipsum</h3>
+                                <a href="/cultural">
+                                    <h3>Cultural Council</h3>
                                     <p>Feugiat tempus veroeros dolor</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <h3>Dolor sit amet</h3>
+                                <a href="/game">
+                                    <h3>Games & Sports Council</h3>
                                     <p>Sed vitae justo condimentum</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <h3>Feugiat veroeros</h3>
+                                <a href="fmc">
+                                    <h3>Films & Media Council</h3>
                                     <p>Phasellus sed ultricies mi congue</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <h3>Etiam sed consequat</h3>
+                                <a href="senate">
+                                    <h3>Senate</h3>
+                                    <p>Porta lectus amet ultricies</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="snt">
+                                    <h3>Science & Technology Counil</h3>
                                     <p>Porta lectus amet ultricies</p>
                                 </a>
                             </li>
@@ -122,7 +133,11 @@
                 <!-- Actions -->
                     <section>
                         <ul class="actions vertical">
-                            <li><a href="#" class="button big fit">Log In</a></li>
+                            {% if not request.user.is_authenticated %}  
+                            <li><a href="{% url "login" %}" class="button big fit">Log In</a></li>
+                            {% else %}
+                            <li><a href="{% url "logout" %}" class="button big fit">Log Out</a></li>
+                            {% endif %}
                         </ul>
                     </section>
 
