@@ -26,9 +26,6 @@
         <a href="{{ obj.get_absolute_url }}" class="image featured"><img src="{{ obj.image.url }}" alt="" /></a>
         {% endif %}
         
-        <!-- <p>The Academic Senate recently decided that all instructors will be required to show the answer scripts of the Mid Semester examinations within 14 days of the end of the exams. Vox contacted Prof. Neeraj Mishra, Dean of Academic Affairs, for further details on the matter.
-        </p> -->
-        <!-- {{ obj.get_markdown|truncatechars_html:250 }} -->
         {{ obj.intro }}
         <br>
         <br>
@@ -37,11 +34,11 @@
             <ul class="actions">
                 <li><a href="{{ obj.get_absolute_url }}" class="button big">Continue Reading</a></li>
             </ul>
-            <ul class="stats">
+            <!-- <ul class="stats">
                 <li><a href="#">General</a></li>
                 <li><a href="#" class="icon fa-heart">28</a></li>
                 <li><a href="#" class="icon fa-comment">128</a></li>
-            </ul>
+            </ul> -->
         </footer>
     </article>
 
@@ -50,15 +47,15 @@
     <ul class="actions pagination">
 <!-- <span class="step-links"> -->
     {% if object_list.has_previous %}
-        <li><a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="big previous">previous</a></li>
+        <li><a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="big previous button">previous</a></li>
     {% endif %}
 
     <!-- <span class="current"> -->
-        <li><a class=" big">Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.</a></li>
+        <li><a class=" big button">Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.</a></li>
     <!-- </span> -->
 
     {% if object_list.has_next %}
-        <li><a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class=" big next">next</a></li>
+        <li><a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class=" big next button">next</a></li>
     {% endif %}
 <!-- </span> -->
     </ul>
@@ -69,7 +66,7 @@
 
 <!-- Intro -->
     <section id="intro">
-        <a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a>
+        <a href="#" class="logo"><img src="/static/images/fevicon.png" alt="" /></a>
         <header>
             <h2>GYMKHANA <font color=red>L!VE</font></h2>
             <p>Get to know what all is going around the campus in one place.</p>
@@ -143,31 +140,16 @@
         </ul>
     </section>
 
-<!-- About -->
-    <section class="blurb">
-        <h2>About</h2>
-        <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.</p>
-        <ul class="actions">
-            <li><a href="#" class="button">Learn More</a></li>
-        </ul>
-    </section>
-
-<!-- Footer -->
     <section id="footer">
         <ul class="icons">
             <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
             <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
-            <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
         </ul>
-        <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+        <p class="copyright">&copy; Untitled. Design: HTML5 UP.</p>
     </section>
 
 </section>
 <!-- </div> -->
 
-<!-- </div> -->
-<!-- </div> -->
 
 {% endblock content %}
