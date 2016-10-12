@@ -34,3 +34,7 @@ class PostForm(forms.ModelForm):
             "publish",
             "tags",
         ]
+
+    def content(self):
+        content = self.cleaned_data.get('content')
+        return content
